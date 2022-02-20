@@ -1,0 +1,62 @@
+<div class="parent">
+    <div>
+        <!--SAVE & EDIT FIELDS-->
+        <div>
+            <!--Title-->
+            <div class="title">
+                <input id="title" type="text" [attr.placeholder]="category == 'meeting' ? 'Meeting Title': category == 'event' ? 'Event Title': category == 'birthday' ? 'Birthday Title': 'Reminder Title'" title="Title">
+            </div>
+
+            <!--Date & Time-->
+            <div class="date-time" *ngIf="category == 'meeting' || category == 'event'">
+                <input type="time" id="start-t">
+                <input type="time" id="end-t">
+                <span>Start Time</span>
+                <span>End Time</span>
+            </div>
+
+            <!--Venue-->
+            <div class="venue" *ngIf="category == 'meeting' || category == 'event'">
+                <textarea id="venue" rows="2" maxlength="100" placeholder="Venue" title="Venue"></textarea>
+            </div>
+
+            <!--Attendee-->
+            <div class="container" *ngIf="category == 'meeting'">
+                <div>attendee</div>
+                <div class="attendee">
+                    <div *ngFor="let a of attendee; let ind = index">
+                        <input type="text" placeholder="Name" value="{{a.name}}" (change)="attendeeChange($event, ind, 'name')">
+                        <input type="text" placeholder="Email" value="{{a.email}}" (change)="attendeeChange($event, ind, 'email')">
+                        <div class="material-icons" (click)="attendeeDelete(ind)" title="Remove Attendee">remove_circle_outline</div>
+                    </div>
+                </div>
+                <div><span class="material-icons" (click)="attendeeAdd()" title="Add Attendee">add</span><span (click)="attendeeAdd()">add attendee</span></div>
+            </div>
+
+            <!--Checklist-->
+            <div class="container" *ngIf="category == 'meeting' || category == 'event' || category == 'reminder'">
+                <div>checklist</div>
+                <div class="checklist">
+                    <div *ngFor="let c of checklist; let ind = index">
+                        <input type="text" value="{{c}}" (change)="checklistChange($event, ind)">
+                        <span class="material-icons" (click)="checklistDelete(ind)" title="Remove Item">remove_circle_outline</span>
+                    </div>
+                </div>
+                <div><span class="material-icons" (click)="checklistAdd()" title="Add Item">add</span><span (click)="checklistAdd()">add item</span></div>
+            </div>
+        </div>
+
+        <!--SAVE, UPDATE & CANCEL Buttons-->
+        <div class="buttons">
+            <div *ngIf="!editToken && category == 'meeting'" (click)="saveMeet()" title="Save">Save</div>
+            <div *ngIf="!editToken && category == 'event'" (click)="saveEve()" title="Save">Save</div>
+            <div *ngIf="!editToken && category == 'birthday'" (click)="saveBirth()" title="Save">Save</div>
+            <div *ngIf="!editToken && category == 'reminder'" (click)="saveRemind()" title="Save">Save</div>
+            <div *ngIf="editToken && category == 'meeting'" (click)="updMeet()" title="Update">Update</div>
+            <div *ngIf="editToken && category == 'event'" (click)="updEve()" title="Update">Update</div>
+            <div *ngIf="editToken && category == 'birthday'" (click)="updBirth()" title="Update">Update</div>
+            <div *ngIf="editToken && category == 'reminder'" (click)="updRemind()" title="Update">Update</div>
+            <div (click)="closeCateg()" title="Cancel">Cancel</div>
+        </div>
+    </div>
+</div>

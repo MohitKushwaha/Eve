@@ -1,0 +1,93 @@
+<div class="parent">
+    <div>
+        <!--Month, Year-->
+        <div class="month-head">
+            <img src="../../assets/icons/android-chrome-192x192.png">
+            <div class="font-head">Eve</div>
+            <span class="material-icons" (click)="prevMonth()" title="Previous Month">navigate_before</span>
+            <div>{{monthName}} {{curYear}}</div>
+            <span class="material-icons" (click)="nextMonth()" title="Next Month">navigate_next</span>
+        </div>
+
+        <!--Week Days-->
+        <div class="week-head">
+            <div *ngFor="let d of weekdays">{{d}}</div>
+        </div>
+
+        <!--Dates-->
+        <div class="day-head">
+            <div *ngFor="let d of Arr(startday)"></div>
+            <div *ngFor="let d of Arr(noOfDays); let i = index" (click)="dayDescVisi = true; dayDesc(i+1);">
+                <div>{{i+1}}</div>
+                <div>
+                    <div *ngIf="!dayEves[i+1]; else elseBlock;" class="grid-row">no events</div>
+                    <ng-template #elseBlock>
+                        <ng-container *ngFor="let e of dayEves[i+1]">
+                            <span *ngIf="e == 'meeting'" class="material-icons meeting-icon" title="Meeting">meeting_room</span>
+                            <span *ngIf="e == 'event'" class="material-icons event-icon" title="Event">nightlife</span>
+                            <span *ngIf="e == 'birthday'" class="material-icons birthday-icon" title="Birthday">cake</span>
+                            <span *ngIf="e == 'reminder'" class="material-icons reminder-icon" title="Reminder">notifications</span>
+                        </ng-container>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Selected Date-->
+    <div class="day-desc" [class.display-none]="!dayDescVisi">
+        <div><span class="material-icons" (click)="dayDescVisi = false" title="Close">close</span></div>
+        <div>{{selectedDate}} {{monthName}}, {{curYear}}</div>
+
+        <!--Add Event Buttons-->
+        <div class="add">
+            <div (click)="addEve('meeting')" title="Add Meeting"><span class="material-icons">add</span><div>meeting</div></div>
+            <div (click)="addEve('event')" title="Add Event"><span class="material-icons">add</span><div>event</div></div>
+            <div (click)="addEve('birthday')" title="Add Birthday"><span class="material-icons">add</span><div>birthday</div></div>
+            <div (click)="addEve('reminder')" title="Add Reminder"><span class="material-icons">add</span><div>reminder</div></div>
+        </div>
+
+        <!--Event List-->
+        <ng-container *ngFor="let e of eves; let ind = index">
+            <div class="{{e.category}}">
+                <!--Category-->
+                <div>{{e.category}}</div>
+
+                <!--Title-->
+                <div>{{e.title}}</div>
+
+                <!--Date & Time and Venue-->
+                <div *ngIf="e.category == 'meeting' || e.category == 'event'" class="time-venue">
+                    <span class="material-icons" title="Time">schedule</span>
+                    <span class="material-icons" title="Venue">place</span>
+                    <div>{{e.startTime}} to {{e.endTime}}</div>
+                    <div>{{e.venue}}</div>
+                </div>
+
+                <!--Attendee-->
+                <div *ngIf="e.category == 'meeting'" class="attendee">
+                    <div>attendee</div>
+                    <div *ngFor="let a of e.attendee">{{a.name}}<span>{{a.email}}</span></div>
+                    <div *ngIf="e.attendee.length < 1">no attendee</div>
+                </div>
+
+                <!--Checklist-->
+                <div *ngIf="e.category != 'birthday'" class="checklist">
+                    <div>checklist</div>
+                    <div *ngFor="let c of e.checklist">{{c}}</div>
+                    <div *ngIf="e.checklist.length < 1">no items</div>
+                </div>
+
+                <!--Edit, Delete and Status-->
+                <div class="status">
+                    <span class="material-icons" title="Edit" (click)="category = e.category; editEve(e.uniqueId);">edit</span>
+                    <span class="material-icons" title="Delete" (click)="deleteEve(e.uniqueId,ind)">delete</span>
+                    <div [class.status-active]="e.status == 'pending'" (click)="statusChange(e.uniqueId, 'pending', e.status, ind)" title="status: pending">pending</div>
+                    <div [class.status-active]="e.status == 'done'" (click)="statusChange(e.uniqueId, 'done', e.status, ind)" title="status: done">done</div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<app-add-eve [class.display-none]="category.length < 1" class="overlay"></app-add-eve>

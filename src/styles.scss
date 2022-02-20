@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    font-family: 'Zen Kurenaido', sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    margin: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.font-head {
+    font-family: 'Roboto Slab', serif;
+    color: #0A5947;
+    cursor: default;
+}
+
+body {
+    background-color: #E0E0E0;
+}
+
+.meeting-icon {
+    background-color: #40BAA4;
+}
+.event-icon {
+    background-color: #EC5064;
+}
+.birthday-icon {
+    background-color: #F9A834;
+}
+.reminder-icon {
+    background-color: #007043;
+}
+
+.meeting-border {
+    border-color: #40BAA4;
+}
+.event-border {
+    border-color: #EC5064;
+}
+.birthday-border {
+    border-color: #F9A834;
+}
+.reminder-border {
+    border-color: #007043;
+}
+
+
+.display-none {
+    display: none;
+}
+.display-block {
+    display: block;
+}
+.display-grid {
+    display: grid;
+}

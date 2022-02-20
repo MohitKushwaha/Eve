@@ -1,0 +1,153 @@
+.parent {
+    font-size: 1em;
+    position: fixed;
+    top: 100px;
+    left: 200px;
+    right: 200px;
+    bottom: 100px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.title > input {
+    font-size: 1.5em;
+}
+.title > input, .venue > textarea {
+    border-width: 0px;
+    border-bottom: 1px solid #0A5947;
+    background-color: #FFFFFF;
+    padding: 5px 0px;
+    resize: none;
+    width: 100%;
+}
+
+.date-time {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px 0px;
+
+    > * {
+        align-self: end;
+        justify-self: center;
+        margin: 0px 10px;
+    }
+
+    > span {
+        font-size: 0.8em;
+        cursor: default;
+    }
+}
+
+
+
+.container {
+    margin: 10px 0px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #55b19b;
+
+    > div:nth-child(1) {
+        font-size: 0.8em;
+    }
+
+    > div:last-child {
+        display: grid;
+        grid-template-columns: auto 1fr;
+
+        > * {
+            align-self: center;
+            justify-self: start;
+            cursor: pointer;
+        }
+
+        > span:nth-child(2) {
+            font-size: 0.8em;
+        }
+    }
+}
+
+
+.attendee {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+
+    > div {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        margin: 5px;
+        padding: 2px 5px;
+        border-radius: 5px;
+        background-color: #FFFFFF88;
+
+        > input {
+            border-width: 0px;
+            background-color: transparent;
+        }
+        > input:nth-child(2) {
+            font-size: 0.8em;
+            font-style: italic;
+        }
+
+        > div:nth-child(3) {
+            align-self: center;
+            justify-self: end;
+            grid-row: 1/3;
+            grid-column: 2/3;
+            cursor: pointer;
+        }
+    }
+}
+
+.checklist {
+    display: grid;
+    grid-template-columns: 1fr auto;
+
+    > div {
+        margin: 5px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+
+        > * {
+            align-self: start;
+            justify-self: start;
+        }
+
+        > input {
+            background-color: #FFFFFF88;
+            border-width: 0px;
+            border-radius: 5px;
+            padding: 5px;
+            margin-right: 5px;
+            min-width: 400px;
+        }
+
+        > span {
+            cursor: pointer;
+            margin-right: 15px;
+        }
+    }
+}
+
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr auto;
+
+    > div {
+        align-self: end;
+        justify-self: end;
+        background-color: #0A5947;
+        color: #FFFFFF;
+        padding: 5px 15px;
+        font-size: 1.2em;
+        cursor: pointer;
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+    > div:hover {
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.6);
+    }
+}
