@@ -1,6 +1,5 @@
 # Eve
-An online solution for managing events and reminders developed with Angular framework. Dexie.js over IndexedDB is used as in-browser database. SCSS is used to create stylesheets. Express.js is minimalist web framework for Node.js used here to create the server backend.
-The user can create meetings and events, set reminders and birthday notifications with additonal feature to add guests. Checklists can be created for all events. Date, time and venue is also available where necessary.
+An online solution for managing events and reminders developed with Angular framework. Dexie.js over IndexedDB is used as an in-browser database. SCSS is used to create stylesheets. Express.js is a minimalist web framework for Node.js used here to create the server backend. The user can create meetings and events, set reminders and birthday notifications with additional features to add guests. Checklists can be created for all events. Date, time, and venue are also available where necessary.
 The project follows the guidelines of Progressive Web Apps. It is installable with full offline support.
 
 ## Development server
